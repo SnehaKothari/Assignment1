@@ -6,30 +6,46 @@ namespace Assignment1test
 {
     public class UnitTest1
     {
-        Assignment1.LengthHelper length = new Assignment1.LengthHelper();
+       LengthHelper lengthstr = new LengthHelper();
         [Fact]
 
         public void stringLength()
         {
-            Assert.Equal(0, length.findLength(""));
+            string str = "";
+            int length = lengthstr.findLength(str);
+            Assert.Equal(0, length);
         }
         [Fact]
         public void failTest()
         {
-            Assert.Equal(3, length.findLength("123"));
-
+            string str = "123";
+            int length = lengthstr.findLength(str);
+            Assert.Equal(3, length);
         }
         [Fact]
         public void stringlength1()
         {
-            Assert.NotEqual(11, length.findLength("123456789010"));
+            string str = "123456789010";
+            int length = lengthstr.findLength(str);
+            Assert.NotEqual(11, length);
         }
         [Fact]
         public void stringLength2()
         {
             string? NULL = null;
-            var exception = Record.Exception(() => length.findLength(NULL));
+            var exception = Record.Exception(() => lengthstr.findLength(NULL));
             Assert.IsType<System.NullReferenceException>(exception);
+
+        }
+        [Theory]
+        [InlineData("123",3)]
+        [InlineData("4356",4)]
+        public void theoryTest(string str,int number)
+        {
+            int length = lengthstr.findLength(str);
+            Assert.Equal(number, length);
+
+
         }
     }
 }
